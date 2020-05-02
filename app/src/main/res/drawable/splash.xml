@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/abc_vector_test"/>
+    <item android:top="210dp"
+        android:gravity="center_horizontal">
+        <bitmap android:src="@drawable/untitled1" android:gravity="top"/>
+
+    </item>
+</layer-list>
