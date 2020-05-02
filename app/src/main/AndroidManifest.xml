@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kc.showdisease">
+    <permission
+        android:name="com.kc.showdisease.MAPS_RECIVE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.kc.showdisease.MAPS_RECIVE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -22,6 +27,13 @@
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan"></activity>
+        <uses-library android:name="com.google.android.maps"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBfIYH3hkwrugfalgpUpdm9Z_k17OSlPqU"/>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

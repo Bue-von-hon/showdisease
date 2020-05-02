@@ -10,7 +10,7 @@ public class LginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        login function will be added
+//      todo: 로그인 기능 추가
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lgin);
 
