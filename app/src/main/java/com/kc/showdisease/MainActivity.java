@@ -2,6 +2,7 @@ package com.kc.showdisease;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
 
 
 import android.content.Intent;
@@ -25,12 +26,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MainActivity extends AppCompatActivity {
     SupportMapFragment mapFragment;
     GoogleMap map;
+    SharedPreferencesGenerator spmodel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        spmodel = ViewModelProviders.of(this).get(SharedPreferencesGenerator.class);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        todo: 타이틀 정해야함 일단은 jaja라고
@@ -58,11 +61,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 //        todo: 특정아이디 로그인시 보여질 옵션메뉴 아이템, default값으로 false 준 상황
 //              내용 추가 해야함
+//              이렇게 하지말고 databinding으로 onchanged쓰자
         menu.getItem(2).setVisible(false);
+        if (spmodel.getInt(this, "pw") != -1) {
+            menu.getItem(2).setVisible(true);
+        }
+
         return true;
     }
 
