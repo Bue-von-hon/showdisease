@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import static com.kc.showdisease.MainActivity.spmodel;
+
 public class LginActivity extends AppCompatActivity {
     private EditText idText;
     private EditText pwText;
@@ -34,10 +36,8 @@ public class LginActivity extends AppCompatActivity {
         mContext = this;
 
         //      viewlmodel을 사용해서 sharedPreferences 구현
-        final SharedPreferencesGenerator spmodel = ViewModelProviders.of(this).get(SharedPreferencesGenerator.class);
+//        final SharedPreferencesGenerator spmodel = ViewModelProviders.of(this).get(SharedPreferencesGenerator.class);
         if (savedInstanceState == null) {
-
-
             String id = spmodel.getString(mContext, "id");
             int pw = spmodel.getInt(mContext, "pw");
 
@@ -55,7 +55,7 @@ public class LginActivity extends AppCompatActivity {
 
                 spmodel.setString(mContext, "id", id);
                 spmodel.setInt(mContext, "pw", pw);
-
+                finish();
 
             }
         });
@@ -66,12 +66,11 @@ public class LginActivity extends AppCompatActivity {
 
                 spmodel.setString(mContext, "id", "");
                 spmodel.setInt(mContext, "pw", -1);
-
+                finish();
             }
         });
 
     }
-
 
 
 }

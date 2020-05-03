@@ -3,17 +3,15 @@ package com.kc.showdisease;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class SharedPreferencesGenerator extends ViewModel {
     public static final String PREFERENCES_NAME = "login";
 
-    private static final String DEFAULT_VALUE_STRING = "";
-    private static final boolean DEFAULT_VALUE_BOOLEAN = false;
-    private static final int DEFAULT_VALUE_INT = -1;
-    private static final long DEFAULT_VALUE_LONG = -1L;
-    private static final float DEFAULT_VALUE_FLOAT = -1F;
-
+    private static String DEFAULT_VALUE_STRING = "";
+    private static int DEFAULT_VALUE_INT = -1;
 
     private static SharedPreferences getPreferences(Context context) {
         return context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);

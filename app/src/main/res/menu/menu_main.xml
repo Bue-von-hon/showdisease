@@ -15,5 +15,6 @@
         android:id="@+id/adddisease"
         android:title="add"
         app:showAsAction="ifRoom"
+        android:visible="false"
         />
 </menu>
