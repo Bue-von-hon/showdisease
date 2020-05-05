@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         spmodel = ViewModelProviders.of(this).get(SharedPreferencesGenerator.class);
 
-
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        todo: 타이틀 정해야함 일단은 jaja라고
         binding.toolbar.setTitle("jaja");

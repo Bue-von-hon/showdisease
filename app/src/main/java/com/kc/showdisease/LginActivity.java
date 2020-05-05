@@ -1,6 +1,7 @@
 package com.kc.showdisease;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -12,47 +13,34 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.kc.showdisease.databinding.ActivityLginBinding;
+import com.kc.showdisease.databinding.ActivityMainBinding;
+
 import static com.kc.showdisease.MainActivity.spmodel;
 
 public class LginActivity extends AppCompatActivity {
-    private EditText idText;
-    private EditText pwText;
-    private Button logoutBtn;
-    private Button loginBtn;
     private Context mContext;
-
-    private void init() {
-        idText = (EditText) findViewById(R.id.idText);
-        pwText = (EditText) findViewById(R.id.pwText);
-        logoutBtn = (Button) findViewById(R.id.logoutBtn);
-        loginBtn = (Button) findViewById(R.id.loginBtn);
-    }
+    ActivityLginBinding bindinglgin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lgin);
-        init();
         mContext = this;
+        bindinglgin = DataBindingUtil.setContentView(this, R.layout.activity_lgin);
 
         //      viewlmodel을 사용해서 sharedPreferences 구현
-//        final SharedPreferencesGenerator spmodel = ViewModelProviders.of(this).get(SharedPreferencesGenerator.class);
         if (savedInstanceState == null) {
             String id = spmodel.getString(mContext, "id");
             int pw = spmodel.getInt(mContext, "pw");
-
-
         }
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
+        bindinglgin.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String id = idText.getText().toString();
-                int pw = Integer.parseInt(pwText.getText().toString());
-
+                String id = bindinglgin.idText.getText().toString();
+                int pw = Integer.parseInt(bindinglgin.pwText.getText().toString());
                 spmodel.clear(mContext);
-
                 spmodel.setString(mContext, "id", id);
                 spmodel.setInt(mContext, "pw", pw);
                 finish();
@@ -60,10 +48,9 @@ public class LginActivity extends AppCompatActivity {
             }
         });
 
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
+        bindinglgin.logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 spmodel.setString(mContext, "id", "");
                 spmodel.setInt(mContext, "pw", -1);
                 finish();
