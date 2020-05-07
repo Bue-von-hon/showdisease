@@ -25,12 +25,21 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.kc.showdisease.databinding.ActivityMainBinding;
 
+import java.util.Iterator;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
-    SupportMapFragment mapFragment;
-    GoogleMap map;
+    static SupportMapFragment mapFragment;
+    static GoogleMap map;
     static SharedPreferencesGenerator spmodel;
     static AppDatabase db;
+    Intent intent;
+    String Dname;
+    double latitude = -34;
+    double longitude = 151;
+    Disease target = null;
+    static Iterator<Disease> diseaseIterator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
 //        todo: 타이틀 정해야함 일단은 jaja라고
         binding.toolbar.setTitle("jaja");
         setSupportActionBar(binding.toolbar);
+        List<Disease> targets = db.diseaseDao().getAll();
+        diseaseIterator = targets.iterator();
+
 
 //        todo: 지도 마커 구현
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -52,9 +64,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 map = googleMap;
-                LatLng sydney = new LatLng(-34, 151);
-                map.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-                map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                while (diseaseIterator.hasNext()) {
+                    target = diseaseIterator.next();
+                    String Dname = target.getName();
+                    latitude = target.getLatitude();
+                    longitude = target.getLongitude();
+                    LatLng sydney = new LatLng(latitude, longitude);
+                    map.addMarker(new MarkerOptions().position(sydney).title(Dname));
+                    map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                }
+
             }
         });
 
@@ -91,7 +110,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.login_bar:
-                Intent intent = new Intent(getApplicationContext(), LginActivity.class);
+                intent = new Intent(getApplicationContext(), LginActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.adddisease:
+                intent = new Intent(getApplicationContext(), AddEditDiseaseInfo.class);
                 startActivity(intent);
                 return true;
             default:

@@ -24,4 +24,5 @@ public interface DiseaseDao {
 
     @Query("SELECT * FROM Disease WHERE name LIKE :name")
     Disease findByName(String name);
+
 }
