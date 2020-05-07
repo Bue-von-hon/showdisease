@@ -1,5 +1,6 @@
 package com.kc.showdisease;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -7,9 +8,16 @@ import androidx.room.PrimaryKey;
 public class Disease {
     @PrimaryKey(autoGenerate = true)
     private int id;
+    @ColumnInfo
     private String name;
     private double latitude;
     private double longitude;
+
+    public Disease(String name, double latitude, double longitude) {
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
     @Override
     public String toString() {
@@ -37,9 +45,6 @@ public class Disease {
         this.longitude = longitude;
     }
 
-    public Disease(String name) {
-        this.name = name;
-    }
 
     public int getId() {
         return id;

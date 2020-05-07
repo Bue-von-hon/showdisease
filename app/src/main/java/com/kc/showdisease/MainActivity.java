@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.room.Room;
 
 
 import android.content.Intent;
@@ -29,15 +30,18 @@ public class MainActivity extends AppCompatActivity {
     SupportMapFragment mapFragment;
     GoogleMap map;
     static SharedPreferencesGenerator spmodel;
+    static AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         spmodel = ViewModelProviders.of(this).get(SharedPreferencesGenerator.class);
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        /* build database with Room */
+        db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "database-name").allowMainThreadQueries().build();
+
 //        todo: 타이틀 정해야함 일단은 jaja라고
         binding.toolbar.setTitle("jaja");
         setSupportActionBar(binding.toolbar);

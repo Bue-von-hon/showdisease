@@ -1,6 +1,5 @@
 package com.kc.showdisease;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -22,4 +21,7 @@ public interface DiseaseDao {
 
     @Delete
     void delete(Disease disease);
+
+    @Query("SELECT * FROM Disease WHERE name LIKE :name")
+    Disease findByName(String name);
 }
