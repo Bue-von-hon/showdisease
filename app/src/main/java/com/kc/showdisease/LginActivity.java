@@ -41,7 +41,7 @@ public class LginActivity extends AppCompatActivity {
 
 
                 String id = bindinglgin.idText.getText().toString();
-               // int pw = Integer.parseInt(bindinglgin.pwText.getText().toString());
+               //int pw = Integer.parseInt(bindinglgin.pwText.getText().toString());
                 String pw = bindinglgin.pwText.getText().toString();
                 if (id.length()==0)
                     Toast.makeText(LginActivity.this ,"아이디를 입력하세요", Toast.LENGTH_LONG).show();
@@ -52,7 +52,7 @@ public class LginActivity extends AppCompatActivity {
                 else {
                     spmodel.clear(mContext);
                     spmodel.setString(mContext, "id", id);
-                   // spmodel.setInt(mContext, "pw", pw);
+                    //spmodel.setInt(mContext, "pw", pw);
                     spmodel.setString(mContext, "pw", pw);
                     finish();
                 }
