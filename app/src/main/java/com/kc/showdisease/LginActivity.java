@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.kc.showdisease.databinding.ActivityLginBinding;
 import com.kc.showdisease.databinding.ActivityMainBinding;
@@ -38,12 +39,23 @@ public class LginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 String id = bindinglgin.idText.getText().toString();
-                int pw = Integer.parseInt(bindinglgin.pwText.getText().toString());
-                spmodel.clear(mContext);
-                spmodel.setString(mContext, "id", id);
-                spmodel.setInt(mContext, "pw", pw);
-                finish();
+               // int pw = Integer.parseInt(bindinglgin.pwText.getText().toString());
+                String pw = bindinglgin.pwText.getText().toString();
+                if (id.length()==0)
+                    Toast.makeText(LginActivity.this ,"아이디를 입력하세요", Toast.LENGTH_LONG).show();
+
+                if (pw.length()==0)
+                    Toast.makeText(LginActivity.this ,"비밀번호를 입력하세요", Toast.LENGTH_LONG).show();
+
+                else {
+                    spmodel.clear(mContext);
+                    spmodel.setString(mContext, "id", id);
+                   // spmodel.setInt(mContext, "pw", pw);
+                    spmodel.setString(mContext, "pw", pw);
+                    finish();
+                }
 
             }
         });
