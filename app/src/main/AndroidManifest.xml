@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kc.showdisease">
+
     <permission
         android:name="com.kc.showdisease.MAPS_RECIVE"
         android:protectionLevel="signature" />
-    <uses-permission android:name="com.kc.showdisease.MAPS_RECIVE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="com.kc.showdisease.MAPS_RECIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -14,10 +17,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".AddEditDiseaseInfo"></activity>
+
         <uses-library
             android:name="org.apache.http.legacy"
-            android:required="false"/>
-        <activity android:name=".LginActivity"></activity>
+            android:required="false" />
+
+        <activity android:name=".LginActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
@@ -29,15 +35,16 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
-        <uses-library android:name="com.google.android.maps"/>
+            android:windowSoftInputMode="adjustPan" />
+
+        <uses-library android:name="com.google.android.maps" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBfIYH3hkwrugfalgpUpdm9Z_k17OSlPqU"/>
+            android:value="AIzaSyBfIYH3hkwrugfalgpUpdm9Z_k17OSlPqU" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
     </application>
 
 </manifest>

@@ -1,22 +1,23 @@
 package com.kc.showdisease;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.room.Room;
 
 
 import android.content.Intent;
-import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
+
 import android.view.MenuItem;
-import android.widget.Toast;
+
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
+
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -24,24 +25,38 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.kc.showdisease.databinding.ActivityMainBinding;
 
+import java.util.Iterator;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
-    SupportMapFragment mapFragment;
-    GoogleMap map;
+    static SupportMapFragment mapFragment;
+    static GoogleMap map;
     static SharedPreferencesGenerator spmodel;
-    boolean setVisiblity;
+    static AppDatabase db;
+    Intent intent;
+    String Dname;
+    double latitude = -34;
+    double longitude = 151;
+    Disease target = null;
+    static Iterator<Disease> diseaseIterator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         spmodel = ViewModelProviders.of(this).get(SharedPreferencesGenerator.class);
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        /* build database with Room */
+        db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "database-name").allowMainThreadQueries().build();
+
 //        todo: 타이틀 정해야함 일단은 jaja라고
         binding.toolbar.setTitle("jaja");
         setSupportActionBar(binding.toolbar);
+        List<Disease> targets = db.diseaseDao().getAll();
+        diseaseIterator = targets.iterator();
+
 
 //        todo: 지도 마커 구현
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -49,9 +64,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 map = googleMap;
-                LatLng sydney = new LatLng(-34, 151);
-                map.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-                map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                while (diseaseIterator.hasNext()) {
+                    target = diseaseIterator.next();
+                    String Dname = target.getName();
+                    latitude = target.getLatitude();
+                    longitude = target.getLongitude();
+                    LatLng sydney = new LatLng(latitude, longitude);
+                    map.addMarker(new MarkerOptions().position(sydney).title(Dname));
+                    map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                }
+
             }
         });
 
@@ -69,21 +91,14 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        if (spmodel.getInt(this, "pw") != -1) {
-            menu.findItem(R.id.adddisease).setVisible(true);
-        }
-        return super.onPrepareOptionsMenu(menu);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.menu_main, menu);
-//        todo: 특정아이디 로그인시 보여질 옵션메뉴 아이템, default값으로 false 준 상황
-//              내용 추가 해야함
-//              이렇게 하지말고 databinding으로 onchanged쓰자
+        if (spmodel.getInt(this, "pw") != -1) {
+            menu.findItem(R.id.adddisease).setVisible(true);
+        }
         MenuItem shareItem = menu.findItem(R.id.adddisease);
 
 
@@ -95,7 +110,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.login_bar:
-                Intent intent = new Intent(getApplicationContext(), LginActivity.class);
+                intent = new Intent(getApplicationContext(), LginActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.adddisease:
+                intent = new Intent(getApplicationContext(), AddEditDiseaseInfo.class);
                 startActivity(intent);
                 return true;
             default:

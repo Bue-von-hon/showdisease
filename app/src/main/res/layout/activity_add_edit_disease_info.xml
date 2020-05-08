@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/AddDiseaseNameTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="88dp"
+            android:ems="10"
+            android:hint="name"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/AddLatitudeTxt"
+            android:layout_width="77dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="52dp"
+            android:ems="10"
+            android:hint="latitude"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="@+id/AddDiseaseNameTxt"
+            app:layout_constraintTop_toBottomOf="@+id/AddDiseaseNameTxt" />
+
+        <Button
+            android:id="@+id/AddBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            android:layout_marginEnd="48dp"
+            android:text="Add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/EditDiseaseTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="216dp"
+            android:ems="10"
+            android:hint="name"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/AddLongitudeTxt"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/AddLatitudeTxt"
+            app:layout_constraintTop_toBottomOf="@+id/AddDiseaseNameTxt" />
+
+        <Button
+            android:id="@+id/EditBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="160dp"
+            android:layout_marginEnd="48dp"
+            android:text="Edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AddBtn" />
+
+        <EditText
+            android:id="@+id/AddLongitudeTxt"
+            android:layout_width="73dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="52dp"
+            android:ems="10"
+            android:hint="longitude"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/AddDiseaseNameTxt"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintStart_toEndOf="@+id/AddLatitudeTxt"
+            app:layout_constraintTop_toBottomOf="@+id/AddDiseaseNameTxt" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
