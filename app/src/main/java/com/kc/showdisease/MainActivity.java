@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         /* build database with Room */
         db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").allowMainThreadQueries().build();
+                AppDatabase.class, "disease").allowMainThreadQueries().build();
 
 //        todo: 타이틀 정해야함 일단은 jaja라고
         binding.toolbar.setTitle("jaja");
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        if (spmodel.getInt(this, "pw") != -1) {
+        if (spmodel.getString(this, "id") != "") {
             menu.findItem(R.id.adddisease).setVisible(true);
         }
         MenuItem shareItem = menu.findItem(R.id.adddisease);

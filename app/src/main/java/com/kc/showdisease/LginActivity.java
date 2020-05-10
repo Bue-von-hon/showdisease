@@ -32,7 +32,7 @@ public class LginActivity extends AppCompatActivity {
         //      viewlmodel을 사용해서 sharedPreferences 구현
         if (savedInstanceState == null) {
             String id = spmodel.getString(mContext, "id");
-            int pw = spmodel.getInt(mContext, "pw");
+            String pw = spmodel.getString(mContext, "pw");
         }
 
         bindinglgin.loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -41,7 +41,6 @@ public class LginActivity extends AppCompatActivity {
 
 
                 String id = bindinglgin.idText.getText().toString();
-               //int pw = Integer.parseInt(bindinglgin.pwText.getText().toString());
                 String pw = bindinglgin.pwText.getText().toString();
                 if (id.length()==0)
                     Toast.makeText(LginActivity.this ,"아이디를 입력하세요", Toast.LENGTH_LONG).show();
@@ -52,7 +51,6 @@ public class LginActivity extends AppCompatActivity {
                 else {
                     spmodel.clear(mContext);
                     spmodel.setString(mContext, "id", id);
-                    //spmodel.setInt(mContext, "pw", pw);
                     spmodel.setString(mContext, "pw", pw);
                     finish();
                 }
@@ -64,7 +62,7 @@ public class LginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 spmodel.setString(mContext, "id", "");
-                spmodel.setInt(mContext, "pw", -1);
+                spmodel.setString(mContext, "pw", "");
                 finish();
             }
         });

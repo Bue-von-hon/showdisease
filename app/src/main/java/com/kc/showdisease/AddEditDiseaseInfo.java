@@ -34,7 +34,9 @@ public class AddEditDiseaseInfo extends AppCompatActivity {
                 final String name = binding.AddDiseaseNameTxt.getText().toString();
                 final double latitude = Double.parseDouble(binding.AddLatitudeTxt.getText().toString());
                 final double longitude = Double.parseDouble(binding.AddLongitudeTxt.getText().toString());
-                db.diseaseDao().insert(new Disease(name, latitude, longitude));
+                final String info = binding.AddinfoTxt.getText().toString();
+                final String location = binding.AddLocationTxt.getText().toString();
+                db.diseaseDao().insert(new Disease(name, latitude, longitude, info, location));
                 mapFragment.getMapAsync(new OnMapReadyCallback() {
                     @Override
                     public void onMapReady(GoogleMap googleMap) {

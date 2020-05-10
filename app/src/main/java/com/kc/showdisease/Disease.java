@@ -12,21 +12,29 @@ public class Disease {
     private String name;
     private double latitude;
     private double longitude;
+    private String info;
+    private String location;
 
-    public Disease(String name, double latitude, double longitude) {
+    public Disease(String name, double latitude, double longitude, String info, String location) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
-    @Override
-    public String toString() {
-        return "Disease{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                '}';
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public double getLatitude() {
