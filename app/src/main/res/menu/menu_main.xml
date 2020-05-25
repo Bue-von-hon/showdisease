@@ -8,13 +8,12 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/login_bar"
-        android:icon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/user_round"
         android:title="login"
         app:showAsAction="always" />
     <item
         android:id="@+id/adddisease"
         android:title="add"
         app:showAsAction="ifRoom"
-        android:visible="false"
-        />
+        android:visible="false" />
 </menu>
