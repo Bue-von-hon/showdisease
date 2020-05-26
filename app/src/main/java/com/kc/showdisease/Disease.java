@@ -19,6 +19,8 @@ public class Disease {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.info = info;
+        this.location = location;
     }
 
     public String getInfo() {
