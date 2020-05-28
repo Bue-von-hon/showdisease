@@ -28,7 +28,7 @@ public class AddEditDiseaseInfo extends AppCompatActivity {
         final ActivityAddEditDiseaseInfoBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_add_edit_disease_info);
 
         binding.AddBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
+            //@Override
             public void onClick(View v) {
 
                 final String name = binding.AddDiseaseNameTxt.getText().toString();

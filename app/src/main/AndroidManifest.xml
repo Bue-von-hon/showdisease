@@ -17,7 +17,9 @@
         android:roundIcon="@mipmap/untitled1"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".DiseaseList"></activity>
+        <activity android:name=".Modify_disease1"></activity>
+        <activity android:name=".Modify_disease" />
+        <activity android:name=".DiseaseList" />
         <activity android:name=".AddEditDiseaseInfo" />
 
         <uses-library
