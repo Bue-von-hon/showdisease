@@ -21,7 +21,6 @@ import static com.kc.showdisease.MainActivity.map;
 import static com.kc.showdisease.MainActivity.mapFragment;
 
 public class Modify_disease1 extends AppCompatActivity {
-
     Disease target = null;
     private TextView ModDiseaseName;
     private TextView ModDiseaseNameTxt;
