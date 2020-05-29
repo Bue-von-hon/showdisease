@@ -14,8 +14,9 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginLeft="37dp"
             android:layout_marginTop="60dp"
-            android:text="<질병정보추가란>"
-            android:TextSize="26dp"/>
+            android:text="질병정보추가란"
+            android:textSize="26dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,8 +24,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginLeft="37dp"
             android:layout_marginTop="430dp"
-            android:text="<질병정보편집란>"
-            android:TextSize="26dp"/>
+            android:text="질병정보편집란"
+            android:textSize="26dp" />
 
         <EditText
             android:id="@+id/AddDiseaseNameTxt"

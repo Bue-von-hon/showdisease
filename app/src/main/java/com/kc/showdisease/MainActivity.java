@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         diseaseIterator = targets.iterator();
 
 
-//        todo: 지도 마커 구현
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
