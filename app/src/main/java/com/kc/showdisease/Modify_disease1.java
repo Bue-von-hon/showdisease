@@ -49,9 +49,10 @@ public class Modify_disease1 extends AppCompatActivity {
                 final double longitude = Double.parseDouble(ModLong.getText().toString());
                 final String info = ModInfo.getText().toString();
                 final String location = ModLocation.getText().toString();
-                db.diseaseDao().findByName(Dname);
-
-                db.diseaseDao().update(new Disease(name, latitude, longitude, info, location));
+                Disease a = new Disease(name, latitude, longitude, info, location);
+                db.diseaseDao().update(db.diseaseDao().findByName(Dname));
+//                db.diseaseDao().update(new Disease(name, latitude, longitude, info, location));
+//                db.diseaseDao().update(db.diseaseDao().findByName(Dname));
                 mapFragment.getMapAsync(new OnMapReadyCallback() {
                     public void onMapReady(GoogleMap googleMap) {
                         map = googleMap;

@@ -17,11 +17,17 @@
         android:roundIcon="@mipmap/untitled1"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".Modify_disease1"></activity>
+        <activity
+            android:name=".SearchDisease"
+            android:exported="true" />
+        <activity android:name=".Modify_disease1" />
         <activity android:name=".Modify_disease" />
         <activity android:name=".DiseaseList" />
         <activity android:name=".AddEditDiseaseInfo" />
 
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

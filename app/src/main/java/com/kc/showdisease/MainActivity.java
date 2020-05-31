@@ -3,6 +3,9 @@ package com.kc.showdisease;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.room.Room;
 
@@ -13,6 +16,8 @@ import android.os.Bundle;
 import android.view.Menu;
 
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.SearchView;
 
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -40,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     double longitude = 151;
     Disease target = null;
     static Iterator<Disease> diseaseIterator;
+    private DiseaseViewModel diseaseViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
 
         /* build database with Room */
         db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "disease").allowMainThreadQueries().build();
+                AppDatabase.class, "disease2").allowMainThreadQueries().build();
+        diseaseViewModel = ViewModelProviders.of(this, new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(DiseaseViewModel.class);
+
 
 //        todo: 타이틀 정해야함 일단은 jaja라고
         binding.toolbar.setTitle("jaja");
@@ -99,7 +108,16 @@ public class MainActivity extends AppCompatActivity {
             menu.findItem(R.id.adddisease).setVisible(true);
         }
         MenuItem shareItem = menu.findItem(R.id.adddisease);
+        MenuItem searchItem = menu.findItem(R.id.search_bar);
+        SearchView searchView = (SearchView) searchItem.getActionView();
 
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(getApplicationContext(), SearchDisease.class);
+                startActivity(intent);
+            }
+        });
 
         return true;
     }

@@ -2,6 +2,9 @@ package com.kc.showdisease;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 import android.view.View;
@@ -14,19 +17,22 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.kc.showdisease.databinding.ActivityAddEditDiseaseInfoBinding;
 
+import java.util.List;
+
 import static com.kc.showdisease.MainActivity.db;
 import static com.kc.showdisease.MainActivity.diseaseIterator;
+
 import static com.kc.showdisease.MainActivity.map;
 import static com.kc.showdisease.MainActivity.mapFragment;
 
 public class AddEditDiseaseInfo extends AppCompatActivity {
-
+    private DiseaseViewModel diseaseViewModel;
     Disease target = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final ActivityAddEditDiseaseInfoBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_add_edit_disease_info);
-
+        diseaseViewModel = ViewModelProviders.of(this, new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(DiseaseViewModel.class);
         binding.AddBtn.setOnClickListener(new View.OnClickListener() {
             //@Override
             public void onClick(View v) {
@@ -48,9 +54,9 @@ public class AddEditDiseaseInfo extends AppCompatActivity {
                     }
                 });
 
-
                 finish();
             }
         });
+
     }
 }
