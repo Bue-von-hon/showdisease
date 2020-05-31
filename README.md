@@ -1,7 +1,7 @@
 About Disease
 ============ 
-### About Disease
-- 질병에 대하여
+### Team name
+- About Disease <질병에 대하여 / 모바일 프로그래밍 2조>
 
 
 ### Project goals
@@ -20,5 +20,5 @@ About Disease
 * 김세진 (20150802)
 * 조성우 (20150239)
 
-
+### watching
 [![Watch the video](https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIYvaHiigY75POWi81Cr8vpyhJiLkwV9hAKs2TUrbVROvXTHD5&usqp=CAU)](https://user-images.githubusercontent.com/46879264/83343911-6f10ee80-a33b-11ea-900b-9c070503c308.gif)
