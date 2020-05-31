@@ -31,8 +31,8 @@ public class LginActivity extends AppCompatActivity {
 
         //      viewlmodel을 사용해서 sharedPreferences 구현
         if (savedInstanceState == null) {
-            String id = spmodel.getString(mContext, "id");
-            String pw = spmodel.getString(mContext, "pw");
+//            String id = spmodel.getString(mContext, "id");
+//            String pw = spmodel.getString(mContext, "pw");
         }
 
         bindinglgin.loginBtn.setOnClickListener(new View.OnClickListener() {
