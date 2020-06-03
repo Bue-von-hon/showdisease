@@ -35,28 +35,35 @@ public class LginActivity extends AppCompatActivity {
 //            String pw = spmodel.getString(mContext, "pw");
         }
 
+        //우선 특정값만 받고 이후에 프레퍼런스 수정예정
+        //완성XXXXXX
         bindinglgin.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
                 String id = bindinglgin.idText.getText().toString();
                 String pw = bindinglgin.pwText.getText().toString();
-                if (id.length()==0)
-                    Toast.makeText(LginActivity.this ,"아이디를 입력하세요", Toast.LENGTH_LONG).show();
 
-                if (pw.length()==0)
-                    Toast.makeText(LginActivity.this ,"비밀번호를 입력하세요", Toast.LENGTH_LONG).show();
-
-                else {
+                if(id.equals("Adisease") && pw.equals("12345")){
                     spmodel.clear(mContext);
                     spmodel.setString(mContext, "id", id);
                     spmodel.setString(mContext, "pw", pw);
                     finish();
+                }else if(id.length()==0){
+                    Toast.makeText(LginActivity.this ,"아이디를 입력하세요", Toast.LENGTH_LONG).show();
+                }else if(id.equals("Adisease")){
+                    Toast.makeText(LginActivity.this ,"비밀번호를 다시 입력하세요", Toast.LENGTH_LONG).show();
+                }else if(pw.equals("12345")){
+                    Toast.makeText(LginActivity.this ,"아이디를 다시 입력하세요", Toast.LENGTH_LONG).show();
+                }
+
+                else{
+                    Toast.makeText(LginActivity.this ,"아이디와 비밀번호가 틀렸습니다.", Toast.LENGTH_LONG).show();
                 }
 
             }
         });
+
 
         bindinglgin.logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
