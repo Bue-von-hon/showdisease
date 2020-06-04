@@ -58,20 +58,16 @@ public class LginActivity extends AppCompatActivity {
                     finish();
                 }
 
+
+                bindinglgin.logoutBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        spmodel.setString(mContext, "id", "");
+                        spmodel.setString(mContext, "pw", "");
+                        finish();
+                    }
+                });
+
             }
-        });
-
-        bindinglgin.logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                spmodel.setString(mContext, "id", "");
-                spmodel.setString(mContext, "pw", "");
-                finish();
-            }
-        });
-
-    }
-
-
-}
-
+        }
+        ); //괄호가 안맞는다고 한다...뭐지...??
