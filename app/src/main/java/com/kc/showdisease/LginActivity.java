@@ -36,7 +36,7 @@ public class LginActivity extends AppCompatActivity {
         }
 
         //우선 특정값만 받고 이후에 프레퍼런스 수정예정
-        //완성XXXXXX
+        //완성X
         bindinglgin.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
