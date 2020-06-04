@@ -43,13 +43,13 @@ public class LginActivity extends AppCompatActivity {
 
                 String id = bindinglgin.idText.getText().toString();
                 String pw = bindinglgin.pwText.getText().toString();
-                
 
-                if (id.length()==0)
-                    Toast.makeText(LginActivity.this ,"아이디를 입력하세요", Toast.LENGTH_LONG).show();
 
-                if (pw.length()==0)
-                    Toast.makeText(LginActivity.this ,"비밀번호를 입력하세요", Toast.LENGTH_LONG).show();
+                if (id.length() == 0)
+                    Toast.makeText(LginActivity.this, "아이디를 입력하세요", Toast.LENGTH_LONG).show();
+
+                if (pw.length() == 0)
+                    Toast.makeText(LginActivity.this, "비밀번호를 입력하세요", Toast.LENGTH_LONG).show();
 
                 else {
                     spmodel.clear(mContext);
@@ -58,9 +58,10 @@ public class LginActivity extends AppCompatActivity {
                     finish();
                 }
 
+            }
+        });
 
-
-                bindinglgin.logoutBtn.setOnClickListener(new View.OnClickListener() {
+        bindinglgin.logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 spmodel.setString(mContext, "id", "");
@@ -73,3 +74,4 @@ public class LginActivity extends AppCompatActivity {
 
 
 }
+
