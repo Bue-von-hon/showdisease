@@ -56,7 +56,8 @@ public class LginActivity extends AppCompatActivity {
                     spmodel.setString(mContext, "id", id);
                     spmodel.setString(mContext, "pw", pw);
                     finish();
-                }
+                } } }
+                );
 
 
                 bindinglgin.logoutBtn.setOnClickListener(new View.OnClickListener() {
@@ -70,4 +71,3 @@ public class LginActivity extends AppCompatActivity {
 
             }
         }
-        ); //괄호가 안맞는다고 한다...뭐지...??
