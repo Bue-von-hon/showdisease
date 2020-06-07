@@ -46,7 +46,8 @@
             android:layout_marginTop="52dp"
             android:ems="10"
             android:hint="latitude"
-            android:inputType="textPersonName"
+            android:digits="0123456789"
+            android:inputType="number"
             app:layout_constraintStart_toStartOf="@+id/AddDiseaseNameTxt"
             app:layout_constraintTop_toBottomOf="@+id/AddDiseaseNameTxt" />
 
@@ -90,7 +91,8 @@
             android:layout_marginTop="52dp"
             android:ems="10"
             android:hint="longitude"
-            android:inputType="textPersonName"
+            android:digits="0123456789"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="@+id/AddDiseaseNameTxt"
             app:layout_constraintHorizontal_bias="0.516"
             app:layout_constraintStart_toEndOf="@+id/AddLatitudeTxt"
