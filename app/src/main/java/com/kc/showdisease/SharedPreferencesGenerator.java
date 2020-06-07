@@ -2,7 +2,12 @@ package com.kc.showdisease;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModel;
+
+import java.util.Map;
+import java.util.Set;
 
 public class SharedPreferencesGenerator extends ViewModel {
     public static final String PREFERENCES_NAME = "login";
@@ -53,4 +58,5 @@ public class SharedPreferencesGenerator extends ViewModel {
         edit.clear();
         edit.commit();
     }
+
 }

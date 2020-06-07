@@ -104,12 +104,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        if (mContext != null)
-            if (spmodel.getString(mContext, "id") != "") {
-                menu.findItem(R.id.adddisease).setVisible(true);
-            }
+        SharedPreferences preferences = getSharedPreferences("login", MODE_PRIVATE);
+        String id = preferences.getString("id", " ");
+        if (id.equals("admin")) {//spmodel.getString(this, "id") != "") {
+            menu.findItem(R.id.adddisease).setVisible(true);
+        }
         MenuItem shareItem = menu.findItem(R.id.adddisease);
         MenuItem searchItem = menu.findItem(R.id.search_bar);
         SearchView searchView = (SearchView) searchItem.getActionView();
