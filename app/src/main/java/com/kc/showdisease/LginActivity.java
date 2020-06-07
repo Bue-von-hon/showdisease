@@ -20,7 +20,7 @@ import com.kc.showdisease.databinding.ActivityMainBinding;
 import static com.kc.showdisease.MainActivity.spmodel;
 
 public class LginActivity extends AppCompatActivity {
-    private Context mContext;
+    public static Context mContext;
     ActivityLginBinding bindinglgin;
 
     @Override
@@ -35,39 +35,33 @@ public class LginActivity extends AppCompatActivity {
 //            String pw = spmodel.getString(mContext, "pw");
         }
 
-        //우선 특정값만 받고 이후에 프레퍼런스 수정예정
-        //완성X
         bindinglgin.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String id = bindinglgin.idText.getText().toString();
                 String pw = bindinglgin.pwText.getText().toString();
-
-
                 if (id.length() == 0)
                     Toast.makeText(LginActivity.this, "아이디를 입력하세요", Toast.LENGTH_LONG).show();
-
                 if (pw.length() == 0)
                     Toast.makeText(LginActivity.this, "비밀번호를 입력하세요", Toast.LENGTH_LONG).show();
-
                 else {
                     spmodel.clear(mContext);
                     spmodel.setString(mContext, "id", id);
                     spmodel.setString(mContext, "pw", pw);
                     finish();
-                } } }
-                );
-
-
-                bindinglgin.logoutBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        spmodel.setString(mContext, "id", "");
-                        spmodel.setString(mContext, "pw", "");
-                        finish();
-                    }
-                });
-
+                }
             }
-        }
+        });
+
+
+        bindinglgin.logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spmodel.setString(mContext, "id", "");
+                spmodel.setString(mContext, "pw", "");
+                finish();
+            }
+        });
+
+    }
+}
