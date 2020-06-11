@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.List;
@@ -23,20 +24,36 @@ public class SearchDisease extends AppCompatActivity {
 
         final RDiseaseAdapter adapter = new RDiseaseAdapter();
 
-
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 
-
         diseaseViewModel = ViewModelProviders.of(this, new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(DiseaseViewModel.class);
-        diseaseViewModel.getAllDisease().observe(this, new Observer<List<Disease>>() {
-            @Override
-            public void onChanged(List<Disease> diseases) {
-                adapter.setDiseases(diseases);
-            }
-        });
+        Intent intent = getIntent();
+        if (intent.getStringExtra("query") != null) {
+            diseaseViewModel.getAllDisease().observe(this, new Observer<List<Disease>>() {
+                @Override
+                public void onChanged(List<Disease> diseases) {
+                    adapter.setDiseases(diseases);
+                }
+            });
+            final String query = intent.getStringExtra("query");
+            diseaseViewModel.getAllDisease().observe(this, new Observer<List<Disease>>() {
+                @Override
+                public void onChanged(List<Disease> diseases) {
+                    adapter.getFilter().filter(query);
+                }
+            });
+
+        } else {
+            diseaseViewModel.getAllDisease().observe(this, new Observer<List<Disease>>() {
+                @Override
+                public void onChanged(List<Disease> diseases) {
+                    adapter.setDiseases(diseases);
+                }
+            });
+        }
 
 
     }

@@ -3,6 +3,8 @@ package com.kc.showdisease;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,8 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RDiseaseAdapter extends RecyclerView.Adapter<RDiseaseAdapter.DiseaseHolder> {
+public class RDiseaseAdapter extends RecyclerView.Adapter<RDiseaseAdapter.DiseaseHolder> implements Filterable {
     private List<Disease> diseases = new ArrayList<>();
+    private List<Disease> AllDiseases = new ArrayList<>();
 
     @NonNull
     @Override
@@ -39,6 +42,7 @@ public class RDiseaseAdapter extends RecyclerView.Adapter<RDiseaseAdapter.Diseas
 
     public void setDiseases(List<Disease> diseases) {
         this.diseases = diseases;
+        AllDiseases = new ArrayList<>(diseases);
 //         todo: notufy will be replaced
         notifyDataSetChanged();
     }
@@ -56,4 +60,38 @@ public class RDiseaseAdapter extends RecyclerView.Adapter<RDiseaseAdapter.Diseas
             textViewLocation = itemView.findViewById(R.id.disease_location_txt);
         }
     }
+
+    @Override
+    public Filter getFilter() {
+        return diseasesFilter;
+    }
+
+    private Filter diseasesFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Disease> filtereddiseases = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filtereddiseases.addAll(AllDiseases);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (Disease d : AllDiseases) {
+                    if (d.getName().toLowerCase().contains(filterPattern)) {
+                        filtereddiseases.add(d);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filtereddiseases;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            diseases.clear();
+            diseases.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }
