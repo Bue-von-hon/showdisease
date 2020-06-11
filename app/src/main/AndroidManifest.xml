@@ -17,6 +17,8 @@
         android:roundIcon="@mipmap/untitled1"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".Disease_Infos"></activity>
+        <activity android:name=".Disease_info" />
         <activity
             android:name=".SearchDisease"
             android:exported="true" />
