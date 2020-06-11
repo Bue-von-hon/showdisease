@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         diseaseViewModel = ViewModelProviders.of(this, new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(DiseaseViewModel.class);
 
 //        todo: 타이틀 정해야함 일단은 jaja라고
-        binding.toolbar.setTitle("jaja");
+        binding.toolbar.setTitle("About Disease");
         setSupportActionBar(binding.toolbar);
         List<Disease> targets = db.diseaseDao().getAll();
         diseaseIterator = targets.iterator();
