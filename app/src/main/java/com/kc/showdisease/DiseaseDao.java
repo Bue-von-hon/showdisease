@@ -29,4 +29,6 @@ public interface DiseaseDao {
     @Query("SELECT * FROM Disease WHERE name LIKE :name")
     Disease findByName(String name);
 
+    @Query("UPDATE disease SET latitude = :latitude, longitude = :longitude, info = :info, location = :location WHERE name = :name")
+    void setDisease(String name, double latitude, double longitude, String info, String location);
 }

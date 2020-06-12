@@ -7,6 +7,11 @@
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always" />
     <item
+        android:id="@+id/search_bar2"
+        android:title="search"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/login_bar"
         android:icon="@mipmap/user_round"
         android:title="login"

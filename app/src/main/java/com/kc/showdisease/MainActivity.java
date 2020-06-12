@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 AppDatabase.class, "disease2").allowMainThreadQueries().build();
         diseaseViewModel = ViewModelProviders.of(this, new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(DiseaseViewModel.class);
 
-//        todo: 타이틀 정해야함 일단은 jaja라고
         binding.toolbar.setTitle("About Disease");
         setSupportActionBar(binding.toolbar);
         List<Disease> targets = db.diseaseDao().getAll();
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         SharedPreferences preferences = getSharedPreferences("login", MODE_PRIVATE);
         String id = preferences.getString("id", " ");
-        if (id.equals("admin")) {//spmodel.getString(this, "id") != "") {
+        if (id.equals("admin")) {
             menu.findItem(R.id.adddisease).setVisible(true);
         }
         MenuItem shareItem = menu.findItem(R.id.adddisease);
@@ -128,14 +127,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-//        searchView.setOnSearchClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                intent = new Intent(getApplicationContext(), SearchDisease.class);
-//                startActivity(intent);
-//            }
-//        });
 
         return true;
     }

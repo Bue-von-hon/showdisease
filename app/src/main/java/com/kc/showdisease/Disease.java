@@ -8,11 +8,15 @@ import androidx.room.PrimaryKey;
 public class Disease {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    @ColumnInfo
+    @ColumnInfo(name = "name")
     private String name;
+    @ColumnInfo(name = "latitude")
     private double latitude;
+    @ColumnInfo(name = "longitude")
     private double longitude;
+    @ColumnInfo(name = "info")
     private String info;
+    @ColumnInfo(name = "location")
     private String location;
 
     public Disease(String name, double latitude, double longitude, String info, String location) {
