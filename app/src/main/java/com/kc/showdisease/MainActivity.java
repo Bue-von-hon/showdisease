@@ -64,10 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
         binding.toolbar.setTitle("About Disease");
         setSupportActionBar(binding.toolbar);
+
         List<Disease> targets = db.diseaseDao().getAll();
         diseaseIterator = targets.iterator();
-
-
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override

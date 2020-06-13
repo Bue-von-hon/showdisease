@@ -14,6 +14,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.kc.showdisease.databinding.ActivityAddEditDiseaseInfoBinding;
 
@@ -33,10 +34,10 @@ public class AddEditDiseaseInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         final ActivityAddEditDiseaseInfoBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_add_edit_disease_info);
         diseaseViewModel = ViewModelProviders.of(this, new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(DiseaseViewModel.class);
+
         binding.AddBtn.setOnClickListener(new View.OnClickListener() {
             //@Override
             public void onClick(View v) {
-
                 final String name = binding.AddDiseaseNameTxt.getText().toString();
                 final double latitude = Double.parseDouble(binding.AddLatitudeTxt.getText().toString());
                 final double longitude = Double.parseDouble(binding.AddLongitudeTxt.getText().toString());
@@ -50,6 +51,40 @@ public class AddEditDiseaseInfo extends AppCompatActivity {
                         LatLng sydney = new LatLng(latitude, longitude);
                         map.addMarker(new MarkerOptions().position(sydney).title(name));
                         map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+                    }
+                });
+
+                finish();
+            }
+        });
+
+        binding.EditBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String Editname = binding.EditDiseaseTxt.getText().toString();
+                double Editlatitude = Double.parseDouble(binding.EditLatitudeTxt.getText().toString());
+                double Editlongitude = Double.parseDouble(binding.EditLongitudeTxt.getText().toString());
+                String Editinfo = binding.EditinfoTxt.getText().toString();
+                String Editlocation = binding.EditLocationTxt.getText().toString();
+
+                db.diseaseDao().setDisease(Editname, Editlatitude, Editlongitude, Editinfo, Editlocation);
+                map.clear();
+                List<Disease> targets = db.diseaseDao().getAll();
+                diseaseIterator = targets.iterator();
+                mapFragment.getMapAsync(new OnMapReadyCallback() {
+                    @Override
+                    public void onMapReady(GoogleMap googleMap) {
+                        map = googleMap;
+                        while (diseaseIterator.hasNext()) {
+                            target = diseaseIterator.next();
+                            String Dname = target.getName();
+                            double latitude = target.getLatitude();
+                            double longitude = target.getLongitude();
+                            LatLng sydney = new LatLng(latitude, longitude);
+                            map.addMarker(new MarkerOptions().position(sydney).title(Dname));
+                            map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                        }
 
                     }
                 });
