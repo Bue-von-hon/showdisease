@@ -17,7 +17,14 @@
         android:roundIcon="@mipmap/untitled1"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".Disease_Infos"></activity>
+        <activity android:name=".realAnimationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Disease_Infos" />
         <activity android:name=".Disease_info" />
         <activity
             android:name=".SearchDisease"
@@ -38,11 +45,7 @@
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"

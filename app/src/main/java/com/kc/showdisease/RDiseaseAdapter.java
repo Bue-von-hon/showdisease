@@ -17,6 +17,7 @@ import java.util.List;
 public class RDiseaseAdapter extends RecyclerView.Adapter<RDiseaseAdapter.DiseaseHolder> implements Filterable {
     private List<Disease> diseases = new ArrayList<>();
     private List<Disease> AllDiseases = new ArrayList<>();
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
@@ -58,7 +59,25 @@ public class RDiseaseAdapter extends RecyclerView.Adapter<RDiseaseAdapter.Diseas
             textViewName = itemView.findViewById(R.id.disease_name_txt);
             textViewInfo = itemView.findViewById(R.id.disease_info_txt);
             textViewLocation = itemView.findViewById(R.id.disease_location_txt);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(diseases.get(position));
+                    }
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Disease disease);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @Override
