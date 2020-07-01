@@ -13,12 +13,13 @@ public class realAnimationActivity extends AppCompatActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         ImageView iv = (ImageView) findViewById(R.id.imageView);
-
-        iv.setBackgroundResource(R.drawable.sp);
-        AnimationDrawable animationDrawable = (AnimationDrawable) iv.getBackground();
-        animationDrawable.stop();
+//        iv.setBackgroundResource(R.drawable.sp);
+//        AnimationDrawable animationDrawable = (AnimationDrawable) iv.getBackground();
+        AnimationDrawable animationDrawable = (AnimationDrawable) iv.getDrawable();
+        animationDrawable.setCallback(iv);
+        animationDrawable.setVisible(true, true);
         animationDrawable.start();
-        animationDrawable.stop();
+
 
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
@@ -28,6 +29,7 @@ public class realAnimationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_real_animation);
+
 
     }
 }
